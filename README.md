@@ -60,7 +60,7 @@ a. null
 b. undefined
 c. '' // empty string
 d. 0 // zero
-e .NaN
+e. NaN
 f. false
 ```
 
@@ -72,6 +72,51 @@ c. []
 d. {}
 e. ' ' // Space string
 ```
+
+## Short circuit evaluator
+#### At first get true
+```composer log
+var a = 3;
+a && conlose.log('Ok');
+```
+#### At first get false
+```composer log
+var a = false
+a || console.log('Hellow world');
+```
+
+# 5. [IIFE] Immediate invoke function expression
+```composer log
+(function(){
+let x = 3;
+console.log(x);
+})();
+
+!function(){
+let x = 3;
+console.log(x);
+}();
+
++function(){
+let x = 3;
+console.log(x);
+}();
+```
+
+
+# 6. Hosting 
+
+```composer log
+/*at first run function declaration
+then call */
+
+add (3, 4);
+function(a, b){
+    return a+b;
+}
+```
+
+
 
 
 
