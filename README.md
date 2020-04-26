@@ -31,7 +31,7 @@ a.toLowerCase();
 a.trim(); // output trim extra space befor and after string
 ```
 
-#3. Value and operator 
+# 3. Value and operator 
 #### Data type
 ```composer log
 6 types of data type 
