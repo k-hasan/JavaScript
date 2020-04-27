@@ -104,16 +104,23 @@ console.log(x);
 ```
 
 
-# 6. Hosting 
+# 6. Hoisting 
 
 ```composer log
 /*at first run function declaration
-then call */
-
+then call, where if you write a function*/
+exm:
 add (3, 4);
 function(a, b){
     return a+b;
 }
+
+exception:
+add(5,7); // it's occurded error
+var add = function(a, b){
+    return a+b;
+}
+//But if you call function after function declaration, then it's ok 
 ```
 
 
