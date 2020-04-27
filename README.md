@@ -74,12 +74,12 @@ e. ' ' // Space string
 ```
 
 ## Short circuit evaluator
-#### At first get true
+#### `for &&`When get first time true then do not go next code
 ```composer log
 var a = 3;
 a && conlose.log('Ok');
 ```
-#### At first get false
+#### `for ||`When get first time false then do not go next code
 ```composer log
 var a = false
 a || console.log('Hellow world');
