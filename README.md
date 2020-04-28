@@ -314,7 +314,7 @@ man.forEach(item=>{
 newMan.push(item+ ' mantion');
 });
 
-console.log(newMan);
+console.log(newMan); //["Khayurl mantion","Riad mantion","Rana mantion","Labib mantion","Dip mantion"]
 ```
 #### map
 ```composer log
@@ -324,7 +324,7 @@ var newMan = man.map(item=>{
     return item + ' hi';
 });
 
-console.log(newMan);
+console.log(newMan); //["Khayurl hi","Riad hi","Rana hi","Labib hi","Dip hi"]
 ```
 
 #### reverse
@@ -334,7 +334,7 @@ var myString = "Khayrul Hasan";
 let myArr = myString.split("");
 let reverseArr = myArr.reverse();
 let result = reverseArr.join("");
-console.log(result);
+console.log(result); // "nasaH luryahK"
 
 ```
 #### sort
@@ -345,21 +345,21 @@ let result = number.sort((a, b)=>{
   return a-b;
 });
 
-console.log(result);
+console.log(result); //[2,2,3,10,30,49]
 ```
 #### concat
 ```composer log
 let array = [1, 3, 5];
 let anotherArray = [3, 4, 6];
 let result = array.concat(anotherArray);
-console.log(result);
+console.log(result); //[1,3,5,3,4,6]
 ```
 
 #### slice
 ```composer log
 var myArray = [1, 3, 4, 56, 43, 10];
 var newArray = myArray.slice(2,5);
-console.log(newArray);
+console.log(newArray); //[4,56,43]
 ```
 
 #### every
@@ -374,7 +374,7 @@ var evenNumber = function(num){
 }
 
 let check = myArray.every(evenNumber);
-console.log(check);
+console.log(check); //true
 ```
 
 #### some
@@ -389,7 +389,7 @@ var evenNumber = function(num){
 }
 
 let check = myArray.some(evenNumber);
-console.log(check);
+console.log(check); // true
 ```
 
 #### filter
@@ -404,7 +404,7 @@ var evenNumber = function(num){
 }
 
 let check = myArray.filter(evenNumber);
-console.log(check);
+console.log(check); //[6,4,56,4,10,2]
 ```
 #### splice
 ```composer log
@@ -416,7 +416,7 @@ console.log(check);
 */
 var myArray = [6, 4, 56, 4, 10, 5, 2, 9];
 myArray.splice(2, 3, 67, 'kj', 'kam');
-console.log(myArray);
+console.log(myArray); // [6,4,67,"kj","kam",5,2,9]
 ```
 
 #### reduce
@@ -431,9 +431,15 @@ var newVal = myArray.reduce((a,b)=>{
   return a+b;
 },0); // given value 0
 
-console.log(newVal);
+console.log(newVal); //96
 ```
 
+# 18. Date
+```composer log
+var d = new Date();
+console.log(d);// "2020-04-28T21:05:44.701Z"
+console.log(d.toDateString()); // "Wed Apr 29 2020"
+console.log(d.toTimeString()); // "03:07:42 GMT+0600 (Bangladesh Standard Time)"
 
-
+```
 
