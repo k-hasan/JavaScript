@@ -304,6 +304,136 @@ for(let item in man){
 }
 ```
 
+# 17. Array Function
+#### forEach
+```composer log
+var man = ['Khayurl', 'Riad', 'Rana', 'Labib', 'Dip'];
+
+var newMan = [];
+man.forEach(item=>{
+newMan.push(item+ ' mantion');
+});
+
+console.log(newMan);
+```
+#### map
+```composer log
+var man = ['Khayurl', 'Riad', 'Rana', 'Labib', 'Dip'];
+
+var newMan = man.map(item=>{
+    return item + ' hi';
+});
+
+console.log(newMan);
+```
+
+#### reverse
+```composer log
+var myString = "Khayrul Hasan";
+
+let myArr = myString.split("");
+let reverseArr = myArr.reverse();
+let result = reverseArr.join("");
+console.log(result);
+
+```
+#### sort
+```composer log
+let number = [2, 3, 10, 30, 49, 2];
+
+let result = number.sort((a, b)=>{
+  return a-b;
+});
+
+console.log(result);
+```
+#### concat
+```composer log
+let array = [1, 3, 5];
+let anotherArray = [3, 4, 6];
+let result = array.concat(anotherArray);
+console.log(result);
+```
+
+#### slice
+```composer log
+var myArray = [1, 3, 4, 56, 43, 10];
+var newArray = myArray.slice(2,5);
+console.log(newArray);
+```
+
+#### every
+```composer log
+//Check every element for a specific condition
+var myArray = [6, 4, 56, 4, 10];
+
+var evenNumber = function(num){
+  let remainder = num%2;
+  if(remainder === 0 ) return true ;
+  return false;
+}
+
+let check = myArray.every(evenNumber);
+console.log(check);
+```
+
+#### some
+```composer log
+//Check at least one element for a specific condition
+var myArray = [6, 4, 56, 4, 10];
+
+var evenNumber = function(num){
+  let remainder = num%2;
+  if(remainder === 0 ) return true ;
+  return false;
+}
+
+let check = myArray.some(evenNumber);
+console.log(check);
+```
+
+#### filter
+```composer log
+// Filter element from array and create a new array
+var myArray = [6, 4, 56, 4, 10, 5, 2, 9];
+
+var evenNumber = function(num){
+  let remainder = num%2;
+  if(remainder === 0 ) return true ;
+  return false;
+}
+
+let check = myArray.filter(evenNumber);
+console.log(check);
+```
+#### splice
+```composer log
+/*
+***first param = starting splice
+***second param= how many element delete
+***next params add to array
+***it is mutator function, that is mean origin array will be change
+*/
+var myArray = [6, 4, 56, 4, 10, 5, 2, 9];
+myArray.splice(2, 3, 67, 'kj', 'kam');
+console.log(myArray);
+```
+
+#### reduce
+```composer log
+/*
+*** first iteration : get given 0 value as 'a' and take first element from array as 'b'
+*** second iteration : get return value of first iteration as 'a' and take second element from array as 'b'  
+*/
+var myArray = [6, 4, 56, 4, 10, 5, 2, 9];
+
+var newVal = myArray.reduce((a,b)=>{
+  return a+b;
+},0); // given value 0
+
+console.log(newVal);
+```
+
 
 
 
