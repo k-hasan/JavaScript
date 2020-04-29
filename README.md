@@ -441,5 +441,53 @@ console.log(d);// "2020-04-28T21:05:44.701Z"
 console.log(d.toDateString()); // "Wed Apr 29 2020"
 console.log(d.toTimeString()); // "03:07:42 GMT+0600 (Bangladesh Standard Time)"
 
+
+//Time stamp
+console.log(Date.now());
+
+//Find year, month, date, hour, minutes, seconds
+let dobject = new Date();
+console.log(dobject.getFullYear()) // 2020
+console.log(dobject.getMonth()) // 3 (Less then 1 from current month)
+console.log(dobject.getDate()) // 29
+console.log(dobject.getHours()) // 11
+console.log(dobject.getMinutes()) // 19
+console.log(dobject.getSeconds()) // 56
+
+
+//custing 
+let dobject = new Date();
+
+dobject.setHours(12); // set hour
+console.log(dobject.toDateString()); //"Wed Apr 29 2020"
+console.log(dobject.toTimeString()); //"12:28:36 GMT+0600 (Bangladesh Standard Time)"
+
+
+dobject.setMinutes(12); // set minute
+console.log(dobject.toDateString()); //"Wed Apr 29 2020"
+console.log(dobject.toTimeString()); //"12:12:05 GMT+0600 (Bangladesh Standard Time)"
+
+dobject.setSeconds(12); // set second
+console.log(dobject.toDateString()); //"Wed Apr 29 2020"
+console.log(dobject.toTimeString()); //"12:12:12 GMT+0600 (Bangladesh Standard Time)"
+
+dobject.setYear(2020); // set year
+console.log(dobject.toDateString()); //"Wed Apr 29 2020"
+console.log(dobject.toTimeString()); //"12:12:12 GMT+0600 (Bangladesh Standard Time)"
+
+
+dobject.setMonth(4); // set month (set less then 1 from current month number)
+console.log(dobject.toDateString()); //"Wed Apr 29 2020"
+console.log(dobject.toTimeString()); //"12:12:12 GMT+0600 (Bangladesh Standard Time)"
+
+
+dobject.setDate(4); // set date
+console.log(dobject.toDateString()); //"Wed Apr 04 2020"
+console.log(dobject.toTimeString()); //"12:12:12 GMT+0600 (Bangladesh Standard Time)"
+
+
+//Global Time Zone for save to DB
+let dobject = new Date();
+console.log(dobject.toUTCString()); //"Wed, 29 Apr 2020 05:39:42 GMT"
 ```
 
