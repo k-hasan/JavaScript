@@ -23,9 +23,28 @@
 20. "shahin" or "sahin" for /sh{0, 1}ahin/ instead of /sh?ahin/ একটা থাকবে আবার নাও থাকতে পারে 
 21. "sem" for /se[^x]/ নির্দিষ্ট character ছাড়া other যেকোনো character হতে পারে 
 22. ^শুরু  করা,  $ শেষ করা 
+```
+#### Use
+```composer log
+Two type Uses for regexp in javascript
+
+1. Constractor
+2. Literal
 
 
+1. Constractor
+var r = RegExp('^abc+$', 'i');
 
+var s = "abccc";
+console.log(r.test(s)); //true
 
+2. Literal
+var r = /abc+/i
+var s = "abc"
+console.log(r.exec(s)); //["abc"]
 
+***Functions
+`test` dile true or false return kore
+`exec` dile matched array return kore
+`replace` dile matched portion change hobe
 ```
