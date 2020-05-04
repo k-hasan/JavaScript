@@ -225,6 +225,7 @@ add.apply('man', [2, 3]);
 "man"
 2
 3
+*/
 ```
 
 # 12. High order function 
