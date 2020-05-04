@@ -204,10 +204,27 @@ function add(a, b)
 var d = add.bind(2);
 
 d(34, 55);
+/*"This is a function call ..."
+2
+34
+55*/
+
 
 add.call('dd',3,5);
+/*
+"This is a function call ..."
+"dd"
+3
+5
+*/
+
 
 add.apply('man', [2, 3]);
+/*
+"This is a function call ..."
+"man"
+2
+3
 ```
 
 # 12. High order function 
