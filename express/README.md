@@ -57,3 +57,46 @@ POSTMAN
    "name":"khayrul"
 }
 ```
+
+#### Create module and use main js 
+
+```javascript
+file : src/route.js
+-------------------------------------
+module.exports = function (app) {
+    app.get('/',(req, res)=>{
+        res.end('Hello khayrul hasan');
+    });
+
+
+    app.post('/me', (req, res)=>{
+        let message = {
+            "time" : Date.now(),
+            "name" : `Hello ${req.body.name}`
+        }
+        res.json(message);
+    });
+}
+
+index.js
+--------------------------------
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+const route = require('./src/route');
+
+app.use(bodyParser.json());
+
+route(app);
+
+app.listen(5000);
+
+
+
+************************************** 
+    Object নন প্রিমিটিভ টাই call by referance 
+    আর যা প্রিমিটিভ তা call by value  
+**************************************
+```
+
+
