@@ -99,4 +99,103 @@ app.listen(5000);
 **************************************
 ```
 
+# Static file serve and set middleware on specific routes 
+```composer log
+    const path = reqire('path');
+    app.get('/public/index.html', (req, res)=>{
+        res.sendFile(path.resolve(__dirname, "./public/index.html")); 
+    });
+or
+
+app.use('/pub', express.static('public'))
+```
+
+# custom middle ware create
+```composer log
+const express = require('express');
+const app = express();
+const fixToken = 'bangladeshd';
+
+//create middleware 
+app.use('/api', (req, res, next)=>{
+   let msg = function (m, s){
+        return res.json({
+            message : m
+        }).status(s)
+    };
+
+    let token = req.header('token');
+    if(!token){
+        return msg('unautorized', 401);
+    }else {
+        if(token === fixToken){
+
+            return next();
+        }else{
+            return msg('wrong', 401);
+        }
+    }
+});
+
+
+//Route
+app.get('/api', (req, res)=> {
+    res.json({
+        "message": "hellow khayrul"
+    });
+})
+```
+
+# resis server
+#### index.js
+```composer log
+const express = require('express');
+const app = express();
+const rc = require('./redis');
+
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.json());
+
+
+app.post('/task', (req, res) => {
+    
+    if(req.body.task){
+        rc.lpushAsync('my_tasks', req.body.task)
+        .then(e=>res.json({message:"data saved!"}));
+    }
+    else{
+        res.json({
+            error : true,
+            message : "data properly set",
+        }).status(404)
+    }
+})
+
+app.get('/task', (req, res)=>{
+    rc.lrangeAsync('my_tasks', 0, -1)
+    .then(d=>{
+        res.json({
+            data : d
+        })
+    }).then(()=>{
+        
+        console.error('sfsdfsdfsd');
+        
+    })
+})
+
+
+app.listen(5000);
+```
+#### redis.js
+```composer log
+const redis = require('redis');
+const bluebird = require('bluebird');
+
+const client = redis.createClient();
+bluebird.promisifyAll(client);
+
+module.exports = client;
+```
 
