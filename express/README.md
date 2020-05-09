@@ -146,7 +146,7 @@ app.get('/api', (req, res)=> {
 })
 ```
 
-# resis server
+# redis server (data save)
 #### index.js
 ```composer log
 const express = require('express');
@@ -188,7 +188,7 @@ app.get('/task', (req, res)=>{
 
 app.listen(5000);
 ```
-#### redis.js
+#### redis.js (db conncetion)
 ```composer log
 const redis = require('redis');
 const bluebird = require('bluebird');
@@ -198,4 +198,168 @@ bluebird.promisifyAll(client);
 
 module.exports = client;
 ```
+#### package.json
+```composer log
+bluebird
+```
+--------------------
 
+# postgres server (data save)
+#### index.js
+```composer log
+const express = require('express');
+const app = express();
+const postgres = require('./server/postgres');
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.json());
+
+
+app.post('/task', (req, res) => {
+    
+    if(req.body.task){
+        postgres.Task.create({
+            description : req.body.task
+        })
+        .then(e=>res.json({message:"data saved!"}));
+    }
+    else{
+        res.json({
+            error : true,
+            message : "data properly set",
+        }).status(404)
+    }
+})
+
+app.get('/task', (req, res)=>{
+    postgres.Task.findAll()
+    .then(d=>{
+        res.json({
+            data : d
+        })
+    }).catch(()=>{
+        console.error('error');
+    })
+})
+
+
+app.listen(5000);
+```
+
+#### postgres.js (db conncetion)
+
+```composer log
+const Sequelize = require('sequelize');
+
+//database connection
+const database = new Sequelize('mydb', 'myuser', 'mypass', {
+    host: 'localhost',
+    dialect: 'postgres'
+});
+
+
+//Check databaes connection
+database.authenticate()
+    .then(()=>{
+        console.log('databae connection ok');
+    }).catch(e=>{
+        console.log('databae connection failed');
+    });
+
+// table create
+const Task = database.define('task', {
+    description: Sequelize.STRING
+});
+
+//update schema
+database.sync()
+    .then(e=>{
+        console.log('database sync');
+    }).catch(e=>{
+        console.log('database sync failed');
+    });
+
+module.exports = {
+    database,
+    Task
+};    
+```
+
+#### package.json
+
+```composer log
+pg, pg-hstore, sequelize
+```
+
+# mongo db (data save)
+#### index.js
+```composer log
+const express = require('express');
+const app = express();
+const Task = require('./server/mongo');
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.json());
+
+
+app.post('/task', (req, res) => {
+    let MyName = new Task({ name:req.body.task});
+    MyName.save()
+        .then(e=>{
+            res.json({
+                message: 'added'
+            });
+        }).catch(e=>{
+            res.json({
+                error : true,
+                message: 'not added'
+            }).status(500);
+        });     
+})
+
+app.get('/task', (req, res)=>{
+    Task.find({})
+    .then(d=>{
+        res.json({
+            data : d
+        })
+    }).catch(()=>{
+        console.error('error');
+    })
+})
+
+
+app.listen(5000);
+```
+
+#### mongo.js (db conncetion)
+```composer log
+const mongoose = require('mongoose');
+
+mongoose.connect('mongodb://localhost:27017/nodedb', { useNewUrlParser: true, useUnifiedTopology: true });
+
+mongoose.connection.on('error', e=>{
+    console.log(e);
+});
+
+
+mongoose.connection.on('open', e=>{
+    console.log('connected');
+});
+
+// schema
+const TaskSchema = new mongoose.Schema({
+    name : String
+});
+
+// model
+const Task = mongoose.model('Task', TaskSchema);
+
+module.exports = Task;
+```
+
+#### package.json
+
+```composer log
+mongoose
+```
