@@ -257,6 +257,10 @@ const database = new Sequelize('mydb', 'myuser', 'mypass', {
     dialect: 'postgres'
 });
 
+//or
+
+//const CONNECTION = process.env.DATABASE || 'postgres://myuser:mypass@localhost:5432/mydb';
+
 
 //Check databaes connection
 database.authenticate()
